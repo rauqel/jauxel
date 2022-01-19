@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     int maxStamina = 10;
     int playerStamina;
-    int staminaTimer;
+    float staminaTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -35,18 +35,33 @@ public class PlayerController : MonoBehaviour
         playerObject.velocity = new Vector2(movementValueX * playerSpeed, playerObject.velocity.y);
 
         //
-        isOnGround = Physics2D.OverlapCircle(groundChecker.transform.position, 1.0f, whatIsGround);
+        isOnGround = Physics2D.OverlapCircle(groundChecker.transform.position, 0.1f, whatIsGround);
 
         // jumping + stamina mechanic
-        if(Input.GetKeyDown(KeyCode.Space) && isOnGround){
-            if(playerStamina > 0 && playerStamina <= maxStamina){
-            playerObject.AddForce(new Vector2(0.0f, jumpForce));
-            playerStamina -= 1;
-            }
-            if(playerStamina == 0){
-                playerObject.AddForce(new Vector2(0.0f, 0.0f));
+        // these first two if statement limits the players stamina to the intended amount
+        if(playerStamina > 0){
+            if(Input.GetKeyDown(KeyCode.Space) && isOnGround){
+                playerObject.AddForce(new Vector2(0.0f, jumpForce));
+                playerStamina = playerStamina - 1;
+                Debug.Log(playerStamina);
             }
         }
+        if(playerStamina <= 0){
+            playerStamina = 0;
+        }
 
+        staminaTimer = staminaTimer + Time.deltaTime;
+        if(staminaTimer >= 14.5 && staminaTimer <= 15.5){
+            staminaTimer = 0f;
+            if(playerStamina >= maxStamina){
+                playerStamina = maxStamina;
+            }
+            else if(playerStamina >= 0 && playerStamina < maxStamina){
+                playerStamina += 1;
+            }
+        }
+        else{
+            staminaTimer = staminaTimer + Time.deltaTime;
+        }
     }
 }
