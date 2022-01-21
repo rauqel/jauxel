@@ -43,7 +43,6 @@ public class PlayerController : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space) && isOnGround){
                 playerObject.AddForce(new Vector2(0.0f, jumpForce));
                 playerStamina = playerStamina - 1;
-                Debug.Log(playerStamina);
             }
         }
         if(playerStamina <= 0){
