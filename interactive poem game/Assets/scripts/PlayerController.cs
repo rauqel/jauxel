@@ -9,14 +9,14 @@ public class PlayerController : MonoBehaviour
     public GameObject groundChecker;
     public LayerMask whatIsGround;
 
-    bool isOnGround;
+    public bool isOnGround;
     float movementValueX;
     public float playerSpeed = 3.0f;
 
     public float jumpForce = 0.5f;
 
     int maxStamina = 10;
-    int playerStamina;
+    public int playerStamina;
     float staminaTimer;
 
     // Start is called before the first frame update
@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour
             playerStamina = 0;
         }
 
-        staminaTimer = staminaTimer + Time.deltaTime;
+        staminaTimer = staminaTimer + Time.unscaledDeltaTime;
         if(staminaTimer >= 14.5 && staminaTimer <= 15.5){
             staminaTimer = 0f;
             if(playerStamina >= maxStamina){
