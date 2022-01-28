@@ -8,7 +8,12 @@ public class SlowMo : MonoBehaviour
     public PlayerController playerScript;
 
     float timePressed;
-    float maxPressTime = 5.0f;
+    float maxTime;
+    float coolDown = 1;
+    float timeSinceLast;
+    bool isPressed;
+    bool allowSlowMo;
+
 
     Image timer;
 
@@ -16,32 +21,49 @@ public class SlowMo : MonoBehaviour
     void Start()
     {
         timer = GetComponent<Image>();
-        Time.timeScale = 1.0f;
-        timePressed = 0.0f;
+        timePressed = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(timePressed);
-
-        if (Input.GetKey(KeyCode.LeftShift) && playerScript.playerStamina >= 5)
+        if (isPressed)
         {
             timePressed += Time.unscaledDeltaTime;
-            
-            if(Time.timeScale == 1.0f && timePressed > 0)
-            {
-                Debug.Log("working");
-                Time.timeScale = 0.5f;
-                timePressed += Time.unscaledDeltaTime;
-                playerScript.playerStamina -= 5;
-                timer.fillAmount = timePressed / maxPressTime;
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.LeftShift) || (timePressed >= 4.8 && timePressed <= 5.5))
+        } else if (!isPressed)
         {
+            timeSinceLast += Time.deltaTime;
+        }
+        //-------
+        if((timePressed >= 0.0 && timePressed <= 0.1) && timeSinceLast >= coolDown)
+        {
+            allowSlowMo = true;
+            isPressed = false;
+        }
+        //--------
+        if(timePressed == maxTime)
+        {
+            allowSlowMo = false;
+            isPressed = false;
+        } else if(timePressed < maxTime && timePressed >= 0)
+        {
+            allowSlowMo = true;
+        }
+        //--------
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            isPressed = true;
+        } else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isPressed = false;
             Time.timeScale = 1.0f;
-            timePressed = 0.0f;
+        }
+        //--------
+        if(allowSlowMo && isPressed && playerScript.playerStamina >= 5)
+        {
+            Time.timeScale = 0.5f;
+            timer.fillAmount = timePressed / maxTime;
+            playerScript.playerStamina -= 3;
         }
     }
 }
