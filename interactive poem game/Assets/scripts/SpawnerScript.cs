@@ -11,6 +11,9 @@ public class SpawnerScript : MonoBehaviour
     float timeToNextSpawn;
     float timeSinceLastSpawn = 0.0f;
 
+    public float Var1;
+    public float Var2;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +27,7 @@ public class SpawnerScript : MonoBehaviour
         int selection = Random.Range(0, objectsToSpawn.Length);
         timeSinceLastSpawn = timeSinceLastSpawn + Time.deltaTime;
 
-        if (timeSinceLastSpawn >= 3.1 && timeSinceLastSpawn <= 3.4) 
+        if (timeSinceLastSpawn >= Var1 && timeSinceLastSpawn <= Var2) 
         {
             hasSpawned = true;
             if(hasSpawned == true)
