@@ -9,7 +9,7 @@ public class SlowMo : MonoBehaviour
 
     float timePressed;
     float maxTime = 5.3f;
-    float coolDown = 2.5f;
+    float coolDown = 0.5f;
     float timeSinceLast;
 
     bool coolingDown = false;
@@ -46,7 +46,7 @@ public class SlowMo : MonoBehaviour
             coolingDown = true;
             if (coolingDown)
             {
-                timer.fillAmount += maxTime * (Time.deltaTime / 12);
+                timer.fillAmount += maxTime * (Time.deltaTime / 20);
             }
         }
         //-------
