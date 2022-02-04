@@ -14,7 +14,6 @@ public class SlowMo : MonoBehaviour
 
     bool coolingDown = false;
     bool isPressed;
-    bool isValid;
 
 
     Image timer;
