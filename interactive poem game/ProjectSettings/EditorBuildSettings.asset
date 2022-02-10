@@ -6,18 +6,33 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title Screen.unity
+    guid: 742614571e59c7d4480ba468fa9c9a35
+  - enabled: 1
+    path: Assets/Scenes/TRANSITION/TitleLoading.unity
+    guid: 908afa07d64b50045a8f94daba7dcb76
+  - enabled: 1
     path: Assets/Scenes/LoadingScreen.unity
     guid: 38f45d85347fa6b4caacc7188c308d0f
+  - enabled: 1
+    path: Assets/Scenes/TRANSITION/LoadingOne.unity
+    guid: 5c1edcb833769294282c327fa379cf2b
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/death screens/L1/Death Screen.unity
+    guid: 5560069f58f87fe47a91a1c50cf5ad1e
+  - enabled: 1
+    path: Assets/Scenes/TRANSITION/Two.unity
+    guid: b824d04757c87a04fac72a9e45c71166
+  - enabled: 1
     path: Assets/Scenes/Level 2.unity
     guid: 745821d26b364a24a8fa810d3acf0fcf
   - enabled: 1
+    path: Assets/Scenes/TRANSITION/Three.unity
+    guid: 2313775aeaf0ada4da395694834044aa
+  - enabled: 1
     path: Assets/Scenes/Level 3.unity
     guid: 6df9f48c17604e244b8738d33b9a5570
-  - enabled: 1
-    path: Assets/Scenes/Death Screen.unity
-    guid: 5560069f58f87fe47a91a1c50cf5ad1e
   m_configObjects: {}
